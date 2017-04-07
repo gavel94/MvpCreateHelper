@@ -1,0 +1,18 @@
+package $packagename;
+
+import javax.inject.Inject;
+
+/**
+ * @author $author
+ * @Description: $description
+ * @date $date
+ */
+public class $nameMoudle implements $nameContract.IMoudle
+{
+
+    @Inject
+    public $nameMoudle()
+    {
+    }
+
+}

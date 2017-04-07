@@ -1,0 +1,18 @@
+package $packagename;
+
+import com.hzszn.loan.core.mvp.ActivityPresenter;
+
+import javax.inject.Inject;
+
+/**
+ * @author $author
+ * @Description: $description
+ * @date $date
+ */
+public class $namePresenter extends ActivityPresenter<$nameContract.IView, $nameMoudle> implements $nameContract.IPresenter
+{
+    @Inject
+    public $namePresenter()
+    {
+    }
+}

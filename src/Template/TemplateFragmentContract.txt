@@ -1,0 +1,24 @@
+package $packagename;
+
+import com.hzszn.loan.core.mvp.FragmentView;
+import com.hzszn.loan.core.mvp.Moudle;
+
+/**
+ * @author $author
+ * @Description: $description
+ * @date $date
+ */
+public interface $nameContract
+{
+    interface IMoudle extends Moudle
+    {
+    }
+
+    interface IView extends FragmentView
+    {
+    }
+
+    interface IPresenter
+    {
+    }
+}

@@ -1,0 +1,43 @@
+package $packagename;
+
+import android.os.Bundle;
+import android.view.View;
+
+import com.hzszn.loan.core.BaseActivity;
+
+/**
+ * @author $author
+ * @Description: $description
+ * @date $date
+ */
+public class $nameActivity extends BaseActivity<$namePresenter> implements $nameContract.IView
+{
+    @Override
+    protected void initInject()
+    {
+    }
+
+    @Override
+    protected View loadContentView()
+    {
+        return null;
+    }
+
+    @Override
+    protected void initViews(Bundle savedInstanceState)
+    {
+        super.initViews(savedInstanceState);
+    }
+
+    @Override
+    protected void initData()
+    {
+        super.initData();
+    }
+
+    @Override
+    protected void initEvents()
+    {
+        super.initEvents();
+    }
+}
