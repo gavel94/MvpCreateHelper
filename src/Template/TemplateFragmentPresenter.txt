@@ -1,6 +1,6 @@
 package $packagename;
 
-import com.hzszn.loan.core.mvp.FragmentPresenter;
+import $basepackagename.base.mvp.FragmentPresenter;
 
 import javax.inject.Inject;
 

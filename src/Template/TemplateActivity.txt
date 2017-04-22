@@ -3,7 +3,7 @@ package $packagename;
 import android.os.Bundle;
 import android.view.View;
 
-import com.hzszn.loan.core.BaseActivity;
+import $basepackagename.base.BaseActivity;
 
 /**
  * @author $author

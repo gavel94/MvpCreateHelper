@@ -1,6 +1,6 @@
 package $packagename;
 
-import com.hzszn.loan.core.mvp.ActivityPresenter;
+import $basepackagename.base.mvp.ActivityPresenter;
 
 import javax.inject.Inject;
 

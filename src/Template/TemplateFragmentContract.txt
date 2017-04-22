@@ -1,7 +1,7 @@
 package $packagename;
 
-import com.hzszn.loan.core.mvp.FragmentView;
-import com.hzszn.loan.core.mvp.Moudle;
+import $basepackagename.base.mvp.FragmentView;
+import $basepackagename.base.mvp.Moudle;
 
 /**
  * @author $author

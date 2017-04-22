@@ -26,9 +26,9 @@ public class MvpGenerateAction extends AnAction
     //包名
     private String mPackageName = "";
     private String mAuthor;//作者
-    private String mModuleName;//模块名称
+    private String mModuleName;//创建文件的前缀
     private String mAppName;//app名字  默认为app
-
+    private boolean isActivity;
 
     private enum CodeType
     {
@@ -66,16 +66,20 @@ public class MvpGenerateAction extends AnAction
             @Override
             public void ok(String author, String moduleName, String appName, String packageName, boolean isAc)
             {
-                if (author == null||moduleName == null||appName == null||packageName == null||moduleName.length()==0||author.length()==0||appName.length()==0||packageName.length()==0)
+                if (author == null || moduleName == null || appName == null || moduleName.length() == 0 || author.length() == 0 || appName.length() == 0)
                 {
                     Messages.showInfoMessage(project, "something is empty", "title");
                     return;
                 }
+                isActivity = isAc;
                 mAuthor = author;
                 mModuleName = moduleName;
                 mAppName = appName;
-                mPackageName = packageName;
-                if (isAc)
+                if (packageName != null || packageName.length() != 0)
+                {
+                    mPackageName = packageName;
+                }
+                if (isActivity)
                 {
                     createActivityClassFiles();
                 } else
@@ -237,7 +241,15 @@ public class MvpGenerateAction extends AnAction
     private String getAppPath()
     {
         String packagePath = mPackageName.replace(".", "/");
-        String appPath = project.getBasePath() + "/" + mAppName + "/src/main/java/" + packagePath + "/";
+        String appPath;
+        if (isActivity)
+        {
+            appPath = project.getBasePath() + "/" + mAppName + "/src/main/java/" + packagePath + "/ui/activity/";
+        } else
+        {
+            appPath = project.getBasePath() + "/" + mAppName + "/src/main/java/" + packagePath + "/ui/fragment/";
+        }
+
         return appPath;
     }
 
@@ -253,6 +265,10 @@ public class MvpGenerateAction extends AnAction
         if (content.contains("$packagename"))
         {
             content = content.replace("$packagename", mPackageName + "." + mModuleName.toLowerCase());
+        }
+        if (content.contains("$basepackagename"))
+        {
+            content = content.replace("$basepackagename", mPackageName);
         }
         content = content.replace("$author", mAuthor);
         content = content.replace("$date", getDate());
