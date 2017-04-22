@@ -264,7 +264,14 @@ public class MvpGenerateAction extends AnAction
         content = content.replace("$name", mModuleName);
         if (content.contains("$packagename"))
         {
-            content = content.replace("$packagename", mPackageName + "." + mModuleName.toLowerCase());
+            if (isActivity)
+            {
+                content = content.replace("$packagename", mPackageName + ".ui.activity." + mModuleName.toLowerCase());
+            }else
+            {
+                content = content.replace("$packagename", mPackageName + ".ui.fragment." + mModuleName.toLowerCase());
+            }
+
         }
         if (content.contains("$basepackagename"))
         {
