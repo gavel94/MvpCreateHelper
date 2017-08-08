@@ -1,12 +1,14 @@
 package $packagename;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import $basepackagename.R;
 import $basepackagename.base.BaseFragment;
-
+import $basepackagename.databinding.$bindingFragment$nameBinding;
 /**
  * @author $author
  * @Description: $description
@@ -14,6 +16,7 @@ import $basepackagename.base.BaseFragment;
  */
 public class $nameFragment extends BaseFragment<$namePresenter> implements $nameContract.IView
 {
+    private $bindingFragment$nameBinding mBinding;
 
     public static $nameFragment create()
     {
@@ -26,13 +29,14 @@ public class $nameFragment extends BaseFragment<$namePresenter> implements $name
     @Override
     protected void initInject()
     {
+//        getFragmentComponent().inject(this);
     }
-
 
     @Override
     protected View loadContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        return null;
+        mBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.$appName_fragment$xmlhumptoline, container, false);
+        return mBinding.getRoot();
     }
 
     @Override

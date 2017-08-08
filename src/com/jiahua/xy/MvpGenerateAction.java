@@ -180,6 +180,10 @@ public class MvpGenerateAction extends AnAction
         String fileName = "";
         String content = "";
         String appPath = getAppPath();
+
+        String xmlName = "";
+        String xmlContent = "";
+        String xmlPath = getXmlPath();
         switch (codeType)
         {
             case Activity:
@@ -187,6 +191,10 @@ public class MvpGenerateAction extends AnAction
                 content = ReadTemplateFile(fileName);
                 content = dealTemplateContent(content);
                 writeToFile(content, appPath + mModuleName.toLowerCase(), mModuleName + "Activity.java");
+
+                xmlName = "TemplateXml.txt";
+                xmlContent = ReadTemplateFile(xmlName);
+                writeToFile(xmlContent, xmlPath, mAppName.toLowerCase() + "_activity" + humpToLine(mModuleName) + ".xml");
                 break;
             case ActivityContract:
                 fileName = "TemplateActivityContract.txt";
@@ -211,6 +219,10 @@ public class MvpGenerateAction extends AnAction
                 content = ReadTemplateFile(fileName);
                 content = dealTemplateContent(content);
                 writeToFile(content, appPath + mModuleName.toLowerCase(), mModuleName + "Fragment.java");
+
+                xmlName = "TemplateXml.txt";
+                xmlContent = ReadTemplateFile(xmlName);
+                writeToFile(xmlContent, xmlPath, mAppName.toLowerCase() + "_fragment" + humpToLine(mModuleName) + ".xml");
                 break;
             case FragmentContract:
                 fileName = "TemplateFragmentContract.txt";
@@ -234,6 +246,15 @@ public class MvpGenerateAction extends AnAction
     }
 
     /**
+     * 驼峰转下划线
+     */
+    public static String humpToLine(String str)
+    {
+        str.replace(str.substring(0, 1), str.substring(0, 1).toUpperCase());
+        return str.replaceAll("[A-Z]", "_$0").toLowerCase();
+    }
+
+    /**
      * 获取包名文件路径
      *
      * @return
@@ -254,6 +275,19 @@ public class MvpGenerateAction extends AnAction
     }
 
     /**
+     * 获取包名文件路径
+     *
+     * @return
+     */
+    private String getXmlPath()
+    {
+        String packagePath = mPackageName.replace(".", "/");
+        String appPath;
+        appPath = project.getBasePath() + "/" + mAppName + "/src/main/res/layout/";
+        return appPath;
+    }
+
+    /**
      * 替换模板中字符
      *
      * @param content
@@ -267,7 +301,7 @@ public class MvpGenerateAction extends AnAction
             if (isActivity)
             {
                 content = content.replace("$packagename", mPackageName + ".ui.activity." + mModuleName.toLowerCase());
-            }else
+            } else
             {
                 content = content.replace("$packagename", mPackageName + ".ui.fragment." + mModuleName.toLowerCase());
             }
@@ -279,6 +313,9 @@ public class MvpGenerateAction extends AnAction
         }
         content = content.replace("$author", mAuthor);
         content = content.replace("$date", getDate());
+        content = content.replace("$appName", mAppName.toLowerCase());
+        content = content.replace("$xmlhumptoline", humpToLine(mModuleName.replace(mModuleName.substring(0, 1), mModuleName.substring(0, 1).toUpperCase())));
+        content = content.replace("$binding", mAppName = mAppName.replace(mAppName.substring(0, 1), mAppName.substring(0, 1).toUpperCase()));
         return content;
     }
 

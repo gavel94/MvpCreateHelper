@@ -1,10 +1,13 @@
 package $packagename;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
+import $basepackagename.R;
 import $basepackagename.base.BaseActivity;
-
+import $basepackagename.databinding.$bindingActivity$nameBinding;
 /**
  * @author $author
  * @Description: $description
@@ -12,15 +15,19 @@ import $basepackagename.base.BaseActivity;
  */
 public class $nameActivity extends BaseActivity<$namePresenter> implements $nameContract.IView
 {
+    private $bindingActivity$nameBinding mBinding;
+
     @Override
     protected void initInject()
     {
+//        getActivityComponent().inject(this);
     }
 
     @Override
     protected View loadContentView()
     {
-        return null;
+        mBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.$appName_activity$xmlhumptoline, null, false);
+        return mBinding.getRoot();
     }
 
     @Override
